@@ -428,6 +428,12 @@ static ISColorWheelPixelRGB ISColorWheel_HSBToRGB (CGFloat h, CGFloat s, CGFloat
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if ([_knobView respondsToSelector:@selector(setFillColor:)])
+    {
+        [_knobView performSelector:@selector(setFillColor:) withObject:self.currentColor afterDelay:0.0f];
+        [_knobView setNeedsDisplay];
+    }
+	
     [_delegate colorWheelDidChangeColor:self];
 }
 
